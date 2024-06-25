@@ -8,11 +8,15 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass 
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
 @dataclass
 class DataIngestionConfig:
     train_data_path: str=os.path.join('artifacts','train.csv')
     test_data_path : str=os.path.join('artifacts','test.csv')
     raw_data_path  : str=os.path.join('artifacts','data.csv')
+    original_data_path : str=os.path.join('artifacts','stud.csv')
 
 class DataIngestion:
     def __init__(self):
@@ -22,12 +26,12 @@ class DataIngestion:
         logging.info("Entered the data ingestion process")
 
         try:
-            df=pd.read_csv('Loan Data.csv')
+            df=pd.read_csv(self.ingestion_config.original_data_path)
             logging.info("Imported data into pandas dataframe")
-
+ 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
 
-            df.to_csv(self.ingestion_config.train_data_path)
+            df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
 
             logging.info("Train test split initiating")
             train_set, test_set = train_test_split(df,test_size=0.2,random_state=42)
@@ -47,5 +51,9 @@ class DataIngestion:
 
 if __name__ == '__main__':
     objec = DataIngestion()
-    objec.initiate_data_ingestion()
-    print("Data Ingestion")
+    train_data,test_data=objec.initiate_data_ingestion()
+    print("Data Ingestion Completed")
+
+    data_transformation = DataTransformation()
+
+    data_transformation.initiate_data_transformation(train_data,test_data)
