@@ -1,5 +1,3 @@
-# Logging all the information for finding and debugging
-
 import logging
 import os
 from datetime import datetime
@@ -17,4 +15,3 @@ logging.basicConfig(
 
 
 )
-
