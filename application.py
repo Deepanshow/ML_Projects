@@ -7,7 +7,7 @@ from src.pipeline.predict_pipeline import CustomData,PredictPipeline
 
 application=Flask(__name__)
 
-app=application
+application
 
 ## Route for a home page
 
@@ -42,10 +42,7 @@ def predict_datapoint():
     
 
 if __name__=="__main__":
-<<<<<<< HEAD
-    app.run(host="0.0.0.0")        
-=======
-    application.run()        
->>>>>>> b6e4091c1b1beb40171bc03a2516259a35b10a2f
+    application.run(host="0.0.0.0")        
+
 
 
