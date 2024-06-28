@@ -1,16 +1,7 @@
-pandas
 numpy
+pandas 
 seaborn
 matplotlib
 scikit-learn
-<<<<<<< HEAD
-catboost
-xgboost
-Flask
-
-#-e .
-=======
 dill
-Flask
 -e .
->>>>>>> 6130b440a5d53541d88b8ab50c0c810efa68c25c
